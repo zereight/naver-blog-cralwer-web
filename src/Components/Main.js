@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -42,13 +42,33 @@ const TermInput = styled.input`
   border: none;
 `;
 
+const Button = styled.button`
+  height: 80%;
+  width: fit-content(20em);
+  margin-right: 10px;
+`;
+
 function Main() {
+  const [word, setWord] = useState("");
+
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setWord(value);
+  };
+
+  const onClick = (e) => {
+    console.log(word);
+  };
+
   return (
     <Container>
       <MainGuide>
         <MainGuideText>Make a your wordCloud</MainGuideText>
         <TermInputContainer>
-          <TermInput placeholder="Search..." />
+          <TermInput placeholder="Search..." onChange={onChange} value={word} />
+          <Button onClick={onClick}>Search</Button>
         </TermInputContainer>
       </MainGuide>
     </Container>
